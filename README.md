@@ -255,4 +255,4 @@ Las contribuciones son bienvenidas. Por favor:
 
 ---
 
-Hecho con ❤️ para la educación venezolana
+Hecho con ❤️ por Andres Martinez (TheWolf)
