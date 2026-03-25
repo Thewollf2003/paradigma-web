@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+              red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' }
+            }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], serif: ['Merriweather', 'Georgia', 'serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <nav class="bg-paradigma-blue-800 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-paradigma-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Paradigma</h1>
+            <p class="text-xs text-paradigma-blue-200">UNESR</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="/" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+          <a href="/biblioteca" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Biblioteca</a>
+          <a href="/actividades" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Actividades</a>
+          <a href="/calendario" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Calendario</a>
+          <a href="/equipo" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <article class="bg-white rounded-xl shadow-md p-8">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold text-paradigma-blue-900 mb-4">Sobre Nosotros</h1>
+        <p class="text-xl text-gray-600">Revista Digital Paradigma - UNESR</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-4">Nuestra Misión</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            La Revista Paradigma es una publicación digital de la Universidad Nacional Experimental 
+            Simón Rodríguez (UNESR) dedicada a la difusión del conocimiento, la innovación educativa 
+            y el pensamiento crítico.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Nuestro objetivo es crear un espacio académico accesible donde docentes, estudiantes y 
+            la comunidad en general puedan compartir investigaciones, reflexiones y experiencias 
+            relacionadas con la educación y el desarrollo del pensamiento.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-4">Inspiración: Simón Rodríguez</h2>
+          <div class="bg-paradigma-blue-50 border-l-4 border-paradigma-blue-600 p-6 mb-4">
+            <blockquote class="text-xl italic text-gray-700 mb-2">
+              "Inventamos o Erramos"
+            </blockquote>
+            <cite class="text-paradigma-blue-800 font-semibold">— Simón Rodríguez</cite>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Simón Rodríguez (1769-1854) fue un filósofo y educador venezolano, maestro de Simón Bolívar, 
+            cuyo pensamiento revolucionario continúa inspirando la educación latinoamericana.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Su filosofía se centraba en la búsqueda de soluciones propias para los problemas de América, 
+            la innovación pedagógica y la educación como herramienta de transformación social. Estos 
+            principios son la base fundamental de nuestra revista.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-4">El Departamento EDCII</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            El departamento EDCII (Educación en Ciencias de la Información e Innovación) de la UNESR 
+            es responsable de la gestión y desarrollo de la Revista Paradigma.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Este departamento está compuesto por un equipo multidisciplinario de profesores, 
+            investigadores y estudiantes comprometidos con la excelencia académica y la innovación 
+            educativa.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-4">Nuestros Valores</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-bold text-paradigma-blue-900 mb-2">🎓 Excelencia Académica</h3>
+              <p class="text-gray-600 text-sm">Compromiso con la calidad y el rigor en todas nuestras publicaciones.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-bold text-paradigma-blue-900 mb-2">💡 Innovación</h3>
+              <p class="text-gray-600 text-sm">Búsqueda constante de nuevas formas de pensar y enseñar.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-bold text-paradigma-blue-900 mb-2">🤝 Inclusión</h3>
+              <p class="text-gray-600 text-sm">Acceso abierto al conocimiento para toda la comunidad.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-bold text-paradigma-blue-900 mb-2">🔍 Pensamiento Crítico</h3>
+              <p class="text-gray-600 text-sm">Fomento del análisis profundo y la reflexión.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <a href="/" class="text-paradigma-blue-600 hover:text-paradigma-blue-800 font-semibold inline-flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Volver al inicio
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="bg-paradigma-blue-900 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center text-sm text-paradigma-blue-300">
+        <p>&copy; 2025 Revista Paradigma - UNESR</p>
+        <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

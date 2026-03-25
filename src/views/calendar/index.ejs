@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+              red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' }
+            }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], serif: ['Merriweather', 'Georgia', 'serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-paradigma-blue-800 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-paradigma-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Paradigma</h1>
+            <p class="text-xs text-paradigma-blue-200">Calendario</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="/" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+          <a href="/biblioteca" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Biblioteca</a>
+          <a href="/actividades" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Actividades</a>
+          <a href="/calendario" class="px-4 py-2 rounded-lg bg-paradigma-blue-700">Calendario</a>
+          <a href="/equipo" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+        </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-paradigma-blue-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-paradigma-blue-900">
+      <div class="px-4 py-2 space-y-1">
+        <a href="/" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+        <a href="/biblioteca" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Biblioteca</a>
+        <a href="/actividades" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Actividades</a>
+        <a href="/calendario" class="block px-4 py-2 rounded-lg bg-paradigma-blue-700">Calendario</a>
+        <a href="/equipo" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-paradigma-blue-900 mb-4">Calendario de Actividades</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Consulta los eventos académicos, fechas importantes y actividades programadas 
+        por el departamento EDCII.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Calendario -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <!-- Controls -->
+          <div class="flex items-center justify-between mb-6">
+            <button id="prev-month" class="p-2 rounded-lg hover:bg-gray-100">
+              <svg class="w-6 h-6 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <h2 id="current-month" class="text-2xl font-bold text-paradigma-blue-900"></h2>
+            <button id="next-month" class="p-2 rounded-lg hover:bg-gray-100">
+              <svg class="w-6 h-6 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="grid grid-cols-7 gap-1">
+            <!-- Weekday headers -->
+            <% ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].forEach(day => { %>
+              <div class="text-center font-semibold text-gray-500 py-2 text-sm"><%= day %></div>
+            <% }) %>
+            
+            <!-- Calendar days -->
+            <div id="calendar-days" class="contents"></div>
+          </div>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="mt-6 bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-lg font-bold text-paradigma-blue-900 mb-4">Tipos de Eventos</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="flex items-center">
+              <div class="w-4 h-4 bg-paradigma-blue-500 rounded mr-2"></div>
+              <span class="text-sm text-gray-600">Académico</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-4 h-4 bg-paradigma-red-500 rounded mr-2"></div>
+              <span class="text-sm text-gray-600">Reunión</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
+              <span class="text-sm text-gray-600">Evento</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
+              <span class="text-sm text-gray-600">Taller</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de eventos -->
+      <div>
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-bold text-paradigma-blue-900 mb-4">Próximos Eventos</h3>
+          <div id="events-list" class="space-y-4">
+            <% events.forEach(event => { %>
+              <div class="border-l-4 border-paradigma-blue-500 pl-4 py-2 event-item" data-type="<%= event.type %>">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-semibold text-gray-500"><%= new Date(event.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) %></span>
+                  <span class="text-xs px-2 py-1 rounded bg-paradigma-blue-100 text-paradigma-blue-600"><%= event.type %></span>
+                </div>
+                <h4 class="font-semibold text-paradigma-blue-900"><%= event.title %></h4>
+                <p class="text-sm text-gray-600 mt-1"><%= event.description %></p>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-paradigma-blue-900 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center text-sm text-paradigma-blue-300">
+        <p>&copy; 2025 Revista Paradigma - UNESR - EDCII</p>
+        <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const events = <%- JSON.stringify(events) %>;
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+
+    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+                        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    function getEventTypeColor(type) {
+      const colors = {
+        academic: 'bg-paradigma-blue-500',
+        meeting: 'bg-paradigma-red-500',
+        event: 'bg-green-500',
+        workshop: 'bg-yellow-500'
+      };
+      return colors[type] || 'bg-gray-500';
+    }
+
+    function renderCalendar() {
+      document.getElementById('current-month').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+      
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const calendarDays = document.getElementById('calendar-days');
+      calendarDays.innerHTML = '';
+
+      // Empty cells for days before first day
+      for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'p-2';
+        calendarDays.appendChild(emptyCell);
+      }
+
+      // Days of the month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayEvents = events.filter(e => e.date === dateStr);
+        const isToday = new Date().toDateString() === new Date(currentYear, currentMonth, day).toDateString();
+
+        dayCell.className = `p-2 min-h-[80px] border border-gray-100 rounded-lg m-1 ${isToday ? 'bg-paradigma-blue-50' : 'hover:bg-gray-50'}`;
+        
+        let eventsHtml = dayEvents.map(e => 
+          `<div class="text-xs mt-1 px-1 py-0.5 rounded ${getEventTypeColor(e.type)} text-white truncate">${e.title}</div>`
+        ).join('');
+
+        dayCell.innerHTML = `
+          <div class="font-semibold text-sm mb-1 ${isToday ? 'text-paradigma-blue-600' : 'text-gray-700'}">${day}</div>
+          ${eventsHtml}
+        `;
+        
+        calendarDays.appendChild(dayCell);
+      }
+    }
+
+    document.getElementById('prev-month')?.addEventListener('click', () => {
+      currentMonth--;
+      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    });
+
+    document.getElementById('next-month')?.addEventListener('click', () => {
+      currentMonth++;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      renderCalendar();
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    renderCalendar();
+  </script>
+</body>
+</html>

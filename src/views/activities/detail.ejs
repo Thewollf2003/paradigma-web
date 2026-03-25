@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+              red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' }
+            }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], serif: ['Merriweather', 'Georgia', 'serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <nav class="bg-paradigma-blue-800 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="/actividades" class="flex items-center space-x-2 hover:text-paradigma-blue-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Volver a actividades</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <article>
+      <header class="mb-8">
+        <span class="text-sm font-semibold text-paradigma-red-600 bg-paradigma-red-100 px-3 py-1 rounded-full">
+          <%= activity.category %>
+        </span>
+        <h1 class="text-4xl font-bold text-paradigma-blue-900 mt-4 mb-4"><%= activity.title %></h1>
+        <div class="flex flex-wrap gap-6 text-gray-600">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span><%= new Date(activity.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span><%= activity.time %></span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 0111.314 0z"/>
+            </svg>
+            <span><%= activity.location %></span>
+          </div>
+        </div>
+      </header>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="h-64 bg-gradient-to-br from-paradigma-red-100 to-paradigma-red-200 flex items-center justify-center">
+          <svg class="w-32 h-32 text-paradigma-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div class="p-8">
+          <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-4">Descripción</h2>
+          <p class="text-gray-700 text-lg leading-relaxed"><%= activity.description %></p>
+        </div>
+      </div>
+
+      <div class="bg-paradigma-blue-50 rounded-xl p-6 mb-8">
+        <h3 class="text-xl font-bold text-paradigma-blue-900 mb-4">Información Adicional</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p class="text-sm text-gray-600 mb-1">Departamento</p>
+            <p class="font-semibold text-paradigma-blue-900">EDCII - UNESR</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600 mb-1">Tipo de Actividad</p>
+            <p class="font-semibold text-paradigma-blue-900"><%= activity.category %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <a href="/actividades" class="px-6 py-3 bg-paradigma-blue-600 text-white rounded-lg hover:bg-paradigma-blue-700 transition-colors font-semibold">
+          Volver a Actividades
+        </a>
+        <button class="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold">
+          Compartir
+        </button>
+      </div>
+    </article>
+  </main>
+
+  <footer class="bg-paradigma-blue-900 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center text-sm text-paradigma-blue-300">
+        <p>&copy; 2025 Revista Paradigma - UNESR - EDCII</p>
+        <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

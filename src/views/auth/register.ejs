@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+              red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' }
+            }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center py-12 px-4">
+  <div class="max-w-md w-full">
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 bg-paradigma-blue-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-bold text-paradigma-blue-900">Crear Cuenta</h1>
+      <p class="text-gray-600 mt-2">Únete a la comunidad Paradigma</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="mb-6 p-4 bg-paradigma-red-50 border border-paradigma-red-200 rounded-lg">
+          <p class="text-paradigma-red-600 text-sm"><%= error %></p>
+        </div>
+      <% } %>
+
+      <form action="/auth/registro" method="POST" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre Completo</label>
+          <input type="text" id="name" name="name" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500 focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Correo UNESR</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500 focus:border-transparent"
+            placeholder="tu.nombre@unesr.edu.ve">
+        </div>
+
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Usuario</label>
+          <input type="text" id="username" name="username" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500 focus:border-transparent">
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+          <input type="password" id="password" name="password" required minlength="6"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500 focus:border-transparent">
+        </div>
+
+        <button type="submit"
+          class="w-full px-6 py-3 bg-paradigma-blue-600 text-white rounded-lg font-semibold hover:bg-paradigma-blue-700 transition-colors">
+          Registrarse
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <a href="/auth/login" class="text-paradigma-blue-600 hover:text-paradigma-blue-800 text-sm">
+          ¿Ya tienes cuenta? Inicia sesión
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/" class="text-paradigma-blue-600 hover:text-paradigma-blue-800 text-sm inline-flex items-center">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              },
+              red: {
+                50: '#fef2f2',
+                100: '#fee2e2',
+                200: '#fecaca',
+                300: '#fca5a5',
+                400: '#f87171',
+                500: '#ef4444',
+                600: '#dc2626',
+                700: '#b91c1c',
+                800: '#991b1b',
+                900: '#7f1d1d',
+              }
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .prose { font-family: 'Merriweather', serif; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-paradigma-blue-800 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-paradigma-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+              <path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Paradigma</h1>
+            <p class="text-xs text-paradigma-blue-200">Biblioteca</p>
+          </div>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="/" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+          <a href="/biblioteca" class="px-4 py-2 rounded-lg bg-paradigma-blue-700">Biblioteca</a>
+          <a href="/actividades" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Actividades</a>
+          <a href="/calendario" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Calendario</a>
+          <a href="/equipo" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+          <% if (typeof user !== 'undefined' && user) { %>
+            <a href="/biblioteca/subir" class="px-4 py-2 rounded-lg bg-paradigma-red-600 hover:bg-paradigma-red-700">Subir Artículo</a>
+            <a href="/auth/logout" class="px-4 py-2 rounded-lg bg-paradigma-red-600 hover:bg-paradigma-red-700">Salir</a>
+          <% } else { %>
+            <a href="/auth/login" class="px-4 py-2 rounded-lg bg-paradigma-red-600 hover:bg-paradigma-red-700">Ingresar</a>
+          <% } %>
+        </div>
+        
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-paradigma-blue-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden bg-paradigma-blue-900">
+      <div class="px-4 py-2 space-y-1">
+        <a href="/" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+        <a href="/biblioteca" class="block px-4 py-2 rounded-lg bg-paradigma-blue-700">Biblioteca</a>
+        <a href="/actividades" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Actividades</a>
+        <a href="/calendario" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Calendario</a>
+        <a href="/equipo" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+        <% if (typeof user !== 'undefined' && user) { %>
+          <a href="/biblioteca/subir" class="block px-4 py-2 rounded-lg bg-paradigma-red-600">Subir</a>
+          <a href="/auth/logout" class="block px-4 py-2 rounded-lg bg-paradigma-red-600">Salir</a>
+        <% } else { %>
+          <a href="/auth/login" class="block px-4 py-2 rounded-lg bg-paradigma-red-600">Ingresar</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-paradigma-blue-900 mb-4">Biblioteca Digital</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Repositorio de artículos académicos, investigaciones y reflexiones sobre educación 
+        y pensamiento crítico.
+      </p>
+      <% if (typeof user !== 'undefined' && user) { %>
+        <div class="mt-4">
+          <a href="/biblioteca/subir" class="inline-flex items-center px-6 py-3 bg-paradigma-blue-600 text-white rounded-lg font-semibold hover:bg-paradigma-blue-700">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Subir Nuevo Artículo
+          </a>
+        </div>
+      <% } else { %>
+        <div class="mt-4 bg-paradigma-blue-50 border border-paradigma-blue-200 rounded-lg p-4 inline-block">
+          <p class="text-paradigma-blue-800">
+            <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            Inicia sesión para subir artículos y gestionar contenido.
+            <a href="/auth/login" class="underline font-semibold">Iniciar sesión</a>
+          </p>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Filtros -->
+    <div class="mb-8 flex flex-wrap gap-4 justify-center">
+      <div class="relative">
+        <input type="text" id="search-input" placeholder="Buscar artículos..." 
+          class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500 focus:border-transparent">
+        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+      <select id="category-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-paradigma-blue-500">
+        <option value="">Todas las categorías</option>
+        <option value="Filosofía Educativa">Filosofía Educativa</option>
+        <option value="Innovación">Innovación</option>
+        <option value="Pedagogía">Pedagogía</option>
+      </select>
+    </div>
+
+    <!-- Grid de artículos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid">
+      <% articles.forEach(article => { %>
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow article-card" data-category="<%= article.category %>">
+          <div class="h-48 bg-gradient-to-br from-paradigma-blue-100 to-paradigma-blue-200 flex items-center justify-center">
+            <svg class="w-20 h-20 text-paradigma-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+            </svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-semibold text-paradigma-blue-600 bg-paradigma-blue-100 px-3 py-1 rounded-full">
+              <%= article.category %>
+            </span>
+            <h3 class="text-lg font-bold text-paradigma-blue-900 mt-3 mb-2"><%= article.title %></h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2"><%= article.summary %></p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500"><%= article.author %></span>
+              <span class="text-gray-400"><%= new Date(article.date).toLocaleDateString('es-ES') %></span>
+            </div>
+            <a href="/biblioteca/articulo/<%= article.id %>" class="mt-4 block text-center px-4 py-2 bg-paradigma-blue-600 text-white rounded-lg hover:bg-paradigma-blue-700 transition-colors">
+              Leer artículo
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="mt-16 bg-white rounded-xl shadow-md p-8">
+      <h2 class="text-2xl font-bold text-paradigma-blue-900 mb-6 text-center">Estadísticas de la Biblioteca</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-paradigma-blue-600 mb-2"><%= articles.length %></div>
+          <div class="text-gray-600">Artículos</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-paradigma-red-600 mb-2">3</div>
+          <div class="text-gray-600">Categorías</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-paradigma-blue-600 mb-2">12</div>
+          <div class="text-gray-600">Autores</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-paradigma-red-600 mb-2">2025</div>
+          <div class="text-gray-600">Año</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-paradigma-blue-900 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center text-sm text-paradigma-blue-300">
+        <p>&copy; 2025 Revista Paradigma - UNESR.</p>
+        <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Menú móvil
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Búsqueda y filtrado
+    const searchInput = document.getElementById('search-input');
+    const categoryFilter = document.getElementById('category-filter');
+    const articlesGrid = document.getElementById('articles-grid');
+    const articleCards = articlesGrid.querySelectorAll('.article-card');
+
+    function filterArticles() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const category = categoryFilter.value;
+
+      articleCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const cardCategory = card.dataset.category;
+        const matchesSearch = title.includes(searchTerm);
+        const matchesCategory = !category || cardCategory === category;
+
+        card.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    searchInput?.addEventListener('input', filterArticles);
+    categoryFilter?.addEventListener('change', filterArticles);
+  </script>
+</body>
+</html>

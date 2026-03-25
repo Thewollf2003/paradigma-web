@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paradigma: {
+              blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+              red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' }
+            }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], serif: ['Merriweather', 'Georgia', 'serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-paradigma-blue-800 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-paradigma-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Paradigma</h1>
+            <p class="text-xs text-paradigma-blue-200">Actividades</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="/" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+          <a href="/biblioteca" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Biblioteca</a>
+          <a href="/actividades" class="px-4 py-2 rounded-lg bg-paradigma-blue-700">Actividades</a>
+          <a href="/calendario" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Calendario</a>
+          <a href="/equipo" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+        </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-paradigma-blue-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-paradigma-blue-900">
+      <div class="px-4 py-2 space-y-1">
+        <a href="/" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Inicio</a>
+        <a href="/biblioteca" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Biblioteca</a>
+        <a href="/actividades" class="block px-4 py-2 rounded-lg bg-paradigma-blue-700">Actividades</a>
+        <a href="/calendario" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Calendario</a>
+        <a href="/equipo" class="block px-4 py-2 rounded-lg hover:bg-paradigma-blue-700">Equipo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-paradigma-blue-900 mb-4">Nuestras Actividades</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Descubre las actividades realizadas por el departamento EDCII para fomentar 
+        el aprendizaje, la innovación y el pensamiento crítico.
+      </p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="mb-8 flex flex-wrap gap-2 justify-center">
+      <a href="/actividades" class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= !currentCategory ? 'bg-paradigma-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' %>">
+        Todas
+      </a>
+      <a href="/actividades?category=Taller" class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= currentCategory === 'Taller' ? 'bg-paradigma-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' %>">
+        Talleres
+      </a>
+      <a href="/actividades?category=Conferencia" class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= currentCategory === 'Conferencia' ? 'bg-paradigma-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' %>">
+        Conferencias
+      </a>
+      <a href="/actividades?category=Jornada" class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= currentCategory === 'Jornada' ? 'bg-paradigma-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' %>">
+        Jornadas
+      </a>
+      <a href="/actividades?category=Seminario" class="px-4 py-2 rounded-full text-sm font-semibold transition-colors <%= currentCategory === 'Seminario' ? 'bg-paradigma-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' %>">
+        Seminarios
+      </a>
+    </div>
+
+    <!-- Grid de actividades -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <% activities.forEach(activity => { %>
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="md:flex">
+            <div class="md:flex-shrink-0">
+              <div class="h-48 md:h-full md:w-48 bg-gradient-to-br from-paradigma-red-100 to-paradigma-red-200 flex items-center justify-center">
+                <svg class="w-20 h-20 text-paradigma-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="p-6 flex-grow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-paradigma-red-600 bg-paradigma-red-100 px-3 py-1 rounded-full">
+                  <%= activity.category %>
+                </span>
+                <span class="text-xs text-gray-500"><%= new Date(activity.date).toLocaleDateString('es-ES') %></span>
+              </div>
+              <h3 class="text-xl font-bold text-paradigma-blue-900 mb-2"><%= activity.title %></h3>
+              <p class="text-gray-600 text-sm mb-4"><%= activity.description %></p>
+              <div class="flex flex-wrap gap-4 text-sm text-gray-500">
+                <span class="flex items-center">
+                  <svg class="w-4 h-4 mr-1 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <%= activity.time %>
+                </span>
+                <span class="flex items-center">
+                  <svg class="w-4 h-4 mr-1 text-paradigma-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 0111.314 0z"/>
+                  </svg>
+                  <%= activity.location %>
+                </span>
+              </div>
+              <a href="/actividades/<%= activity.id %>" class="mt-4 inline-block px-6 py-2 bg-paradigma-blue-600 text-white rounded-lg hover:bg-paradigma-blue-700 transition-colors">
+                Ver detalles
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-paradigma-blue-900 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center text-sm text-paradigma-blue-300">
+        <p>&copy; 2025 Revista Paradigma - UNESR - EDCII</p>
+        <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
