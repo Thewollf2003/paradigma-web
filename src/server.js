@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+app.use('/img', express.static(path.join(__dirname, '../img')));
 
 // Configurar motor de plantillas EJS
 app.set('view engine', 'ejs');

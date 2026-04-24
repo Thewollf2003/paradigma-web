@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  
+  <title>
+    <%= title %>
+  </title>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS (CDN para desarrollo) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -52,20 +57,23 @@
       }
     }
   </script>
-  
+
   <style>
     /* Estilos personalizados */
     body {
       font-family: 'Inter', sans-serif;
     }
+
     .prose {
       font-family: 'Merriweather', serif;
     }
+
     .puzzle-piece {
       clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
     }
   </style>
 </head>
+
 <body class="bg-white min-h-screen flex flex-col">
   <!-- Barra de navegación -->
   <nav class="bg-paradigma-blue-800 text-white shadow-lg sticky top-0 z-50">
@@ -75,37 +83,42 @@
         <div class="flex items-center space-x-3">
           <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
             <svg class="w-7 h-7 text-paradigma-blue-800" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 4c-4.42 0-8 3.58-8 8 0 1.85.63 3.55 1.69 4.91L12 12l6.31 4.91C19.37 15.55 20 13.85 20 12c0-4.42-3.58-8-8-8z"/>
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M12 4c-4.42 0-8 3.58-8 8 0 1.85.63 3.55 1.69 4.91L12 12l6.31 4.91C19.37 15.55 20 13.85 20 12c0-4.42-3.58-8-8-8z" />
             </svg>
           </div>
           <div>
-            <h1 class="text-xl font-bold">Paradigma</h1>
+            <h1 class="text-xl font-bold">EDCII</h1>
             <p class="text-xs text-paradigma-blue-200">Revista Digital - UNESR</p>
           </div>
         </div>
-        
+
         <!-- Menú desktop -->
         <div class="hidden md:flex items-center space-x-1">
           <a href="/" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Inicio</a>
-          <a href="/biblioteca" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Biblioteca</a>
-          <a href="/actividades" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Actividades</a>
-          <a href="/calendario" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Calendario</a>
+          <a href="/biblioteca"
+            class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Biblioteca</a>
+          <a href="/actividades"
+            class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Actividades</a>
+          <a href="/calendario"
+            class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Calendario</a>
           <a href="/equipo" class="px-4 py-2 rounded-lg hover:bg-paradigma-blue-700 transition-colors">Equipo</a>
         </div>
-        
+
         <!-- Botón menú móvil -->
         <div class="md:hidden">
           <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-paradigma-blue-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </div>
     </div>
-    
+
     <!-- Menú móvil -->
     <div id="mobile-menu" class="hidden md:hidden bg-paradigma-blue-900">
       <div class="px-4 py-2 space-y-1">
@@ -131,11 +144,11 @@
         <div>
           <h3 class="text-lg font-bold mb-4">Revista Paradigma</h3>
           <p class="text-paradigma-blue-200 text-sm">
-            Inspirada en el pensamiento educativo de Simón Rodríguez. 
+            Inspirada en el pensamiento educativo de Simón Rodríguez.
             Promovemos la innovación, el pensamiento crítico y la construcción del conocimiento.
           </p>
         </div>
-        
+
         <!-- Enlaces rápidos -->
         <div>
           <h3 class="text-lg font-bold mb-4">Enlaces Rápidos</h3>
@@ -146,18 +159,19 @@
             <li><a href="/equipo" class="text-paradigma-blue-200 hover:text-white">Equipo</a></li>
           </ul>
         </div>
-        
+
         <!-- Contacto -->
         <div>
           <h3 class="text-lg font-bold mb-4">Contacto</h3>
           <p class="text-paradigma-blue-200 text-sm">
             UNESR - Departamento EDCII<br>
             Caracas, Venezuela<br>
-            <a href="mailto:paradigma@unesr.edu.ve" class="text-paradigma-blue-300 hover:text-white">paradigma@unesr.edu.ve</a>
+            <a href="mailto:paradigma@unesr.edu.ve"
+              class="text-paradigma-blue-300 hover:text-white">paradigma@unesr.edu.ve</a>
           </p>
         </div>
       </div>
-      
+
       <div class="border-t border-paradigma-blue-800 mt-8 pt-6 text-center text-sm text-paradigma-blue-300">
         <p>&copy; 2025 Revista Paradigma - UNESR. Todos los derechos reservados.</p>
         <p class="mt-2">"Inventamos o Erramos" - Simón Rodríguez</p>
@@ -170,7 +184,7 @@
     // Menú móvil
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    
+
     if (mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
@@ -179,4 +193,5 @@
   </script>
   <script src="/js/main.js"></script>
 </body>
+
 </html>
