@@ -145,67 +145,66 @@
   </nav>
 
   <section class="relative min-h-[700px] flex items-center py-20 overflow-hidden">
-  
-  <div class="absolute inset-0 z-0">
-    <div id="carousel-bg-1" 
-      class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
-      style="background-image: url('/img/uners01.jpg'); background-attachment: fixed;">
-    </div>
-    <div id="carousel-bg-2" 
-      class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
-      style="background-image: url('/img/uners02.jpg'); background-attachment: fixed;">
-    </div>
-    <div id="carousel-bg-3" 
-      class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
-      style="background-image: url('/img/uners03.jpg'); background-attachment: fixed;">
-    </div>
-    
-    <div class="absolute inset-0 bg-black/50"></div>
-  </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div class="text-white">
-          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-2xl">
-            Bienvenidos a la <span class="text-paradigma-red-500">Revista EDICIIT</span>
-          </h2>
-          <p class="text-xl mb-8 leading-relaxed drop-shadow-lg">
-            Innovación educativa y pensamiento crítico inspirado en las ideas de Simón Rodríguez.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="/biblioteca" class="px-8 py-3 bg-white text-paradigma-blue-900 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
-              Explorar Artículos
-            </a>
-            <a href="/actividades" class="px-8 py-3 bg-paradigma-red-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
-              Ver Actividades
-            </a>
+    <div class="absolute inset-0 z-0">
+      <div id="carousel-bg-1" class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+        style="background-image: url('/img/uners01.jpg'); background-attachment: fixed;">
+      </div>
+      <div id="carousel-bg-2" class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+        style="background-image: url('/img/uners02.jpg'); background-attachment: fixed;">
+      </div>
+      <div id="carousel-bg-3" class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+        style="background-image: url('/img/uners03.jpg'); background-attachment: fixed;">
+      </div>
+
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="text-white">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-2xl">
+              Bienvenidos a la <span class="text-paradigma-red-500">Revista EDICIIT</span>
+            </h2>
+            <p class="text-xl mb-8 leading-relaxed drop-shadow-lg">
+              Innovación educativa y pensamiento crítico inspirado en las ideas de Simón Rodríguez.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="/biblioteca"
+                class="px-8 py-3 bg-white text-paradigma-blue-900 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+                Explorar Artículos
+              </a>
+              <a href="/actividades"
+                class="px-8 py-3 bg-paradigma-red-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+                Ver Actividades
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      let current = 1;
-      const total = 3;
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        let current = 1;
+        const total = 3;
 
-      setInterval(() => {
-        // Ocultar imagen actual
-        const currentImg = document.getElementById(`carousel-bg-${current}`);
-        currentImg.classList.replace('opacity-100', 'opacity-0');
+        setInterval(() => {
+          // Ocultar imagen actual
+          const currentImg = document.getElementById(`carousel-bg-${current}`);
+          currentImg.classList.replace('opacity-100', 'opacity-0');
 
-        // Calcular siguiente
-        current = (current % total) + 1;
+          // Calcular siguiente
+          current = (current % total) + 1;
 
-        // Mostrar siguiente imagen
-        const nextImg = document.getElementById(`carousel-bg-${current}`);
-        nextImg.classList.replace('opacity-0', 'opacity-100');
-      }, 5000); // Cambia cada 5 segundos
-    });
-  </script>
-</section>
+          // Mostrar siguiente imagen
+          const nextImg = document.getElementById(`carousel-bg-${current}`);
+          nextImg.classList.replace('opacity-0', 'opacity-100');
+        }, 5000); // Cambia cada 5 segundos
+      });
+    </script>
+  </section>
 
   <section class="py-16 bg-paradigma-blue-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -379,7 +378,9 @@
 
   <footer class="bg-paradigma-blue-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      <p>&copy; 2026 Revista Paradigma - UNESR. "Inventamos o Erramos" - Simón Rodríguez</p>
+      <p>&copy; 2026 Revista Paradigma - UNESR. "Inventamos o Erramos" - Simón Rodríguez | Desarrollado por <a
+          href="https://github.com/Thewollf2003" target="_blank"
+          class="text-paradigma-red-600 hover:text-paradigma-red-700">Andes Martinez</a></p>
     </div>
   </footer>
 
